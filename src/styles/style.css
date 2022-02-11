@@ -28,6 +28,7 @@ a{
     background-color: #f4f4f4;
     border-radius: 10px;
     padding: 1em;
+    margin-bottom: 1em;
 }
 
 .dict-list .inbox .text1{
@@ -44,6 +45,9 @@ a{
     font-size: 1.5rem;
     padding-bottom:1em;
 }
+.dict-card{
+    margin-bottom:100px
+}
 
 .wrt-btn{
     position: fixed;
@@ -51,10 +55,45 @@ a{
     right:50px;
     font-size:2rem;
     color:#222;
+    transition: all .2s ease-in-out;
+}
+.wrt-btn::after{
+    position: absolute;
+    bottom:0;left:0;
+    content: "";
+    width:0;
+    height:2px;
+    background-color: teal;
+    transition: all .2s ease-in-out;
 }
 .wrt-btn:hover{
     color:teal
 }
+.wrt-btn:hover::after{
+    width:100%
+}
 
 /*************** 작성페이지 ****************/
 
+.write .inbox{
+    background-color: #f4f4f4;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 1em;
+}
+.write .add-btn{
+    width:100%;
+    max-width: 240px;
+    padding:20px;
+    border:none;
+    border-radius: 10px;
+    background-color: #d2d2d2;
+    color:#222;
+    font-size:1.25rem;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+}
+.write .add-btn:hover{
+    background-color: teal;
+    color:white;
+}

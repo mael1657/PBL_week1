@@ -10,10 +10,23 @@ export const Text = (props) => {
     return(
         <div className="text-input" style={{width:'100%',}}>
             <p style={{
-                fontSize:"2em",
-                fontWeight:"bold"
+                fontSize:"2rem",
+                fontWeight:"bold",
+                marginBottom:"10px",
             }}>{props.title}</p>
-            <input placeholder={props.placeholder}/>
+            <input style={{
+                width:"100%",
+                padding:"20px 10px",
+                fontSize:"1.5rem",
+                boxSizing:"border-box",
+                border:"none",
+                borderRadius:"10px",
+                marginBottom:"20px",
+            }} 
+            type = "text"
+            placeholder={props.placeholder}
+            id = {props.id}
+            />
         </div>
     )
 }
@@ -21,8 +34,25 @@ export const Text = (props) => {
 export const Textarea = (props) => {
     return(
         <div>
-            <p>{props.title}</p>
-            <textarea placeholder={props.placeholder}/>
+            <p style={{
+                fontSize:"2rem",
+                fontWeight:"bold",
+                marginBottom:"10px",
+            }}>{props.title}</p>
+            <textarea style={{
+                width:"100%",
+                height:"140px",
+                resize:"none",
+                border:"none",
+                borderRadius:"10px",
+                marginBottom:"20px",
+                padding:"20px 10px",
+                boxSizing:"border-box",
+                fontSize:"1rem",
+            }} 
+            placeholder={props.placeholder}
+            id = {props.id}
+            />
         </div>
     )
 }
