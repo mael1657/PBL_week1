@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
+import { db } from "../firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 const Card = ({dict}) => {
     return(
@@ -14,6 +16,31 @@ const Card = ({dict}) => {
 }
 
 const DictCard = () => {
+    // useEffect(async() => {
+    //     console.log("db",db)
+
+    //     // 읽기
+    //     const query = await getDocs(collection(db, "dict"));
+    //     console.log("query",query)
+    //     query.forEach((doc) => {
+    //         console.log(doc.id, doc.data());
+    //     });
+
+    //     // 쓰기
+    //     // addDoc(collection(db, "dict"), {
+    //     //     word: "테스트",
+    //     //     explain: "설명",
+    //     //     example: "예시"
+    //     // })
+
+    //     //수정
+    //     // const docRef = doc(db, "dict", "5NGf55Tfhxf9jCWCC2n6");
+    //     // updateDoc(docRef, {word : "수정"});
+
+    //     //삭제
+    //     // const docRef = doc(db, "dict", "5NGf55Tfhxf9jCWCC2n6");
+    //     // deleteDoc(docRef);
+    // },[])
     const dicts = [
         {
             id:1,
@@ -28,9 +55,12 @@ const DictCard = () => {
             example : "뿌에에에에에에ㅔㅇ",
         },
     ]
+
+    const my_wrap = useRef(null);
+    // console.log(my_wrap)
     return(
-        <div className="dict-card">
-            {dicts.reverse().map(dict => (
+        <div className="dict-card" ref={my_wrap}>
+            {dicts.map(dict => (
                 <Card dict = {dict} key = {dict.id}/>
             ))}
         </div>

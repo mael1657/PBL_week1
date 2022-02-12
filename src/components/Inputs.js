@@ -25,7 +25,10 @@ export const Text = (props) => {
             }} 
             type = "text"
             placeholder={props.placeholder}
-            id = {props.id}
+            id = {`input-${props.name}`}
+            name = {props.name}
+            value = {props.value}
+            onChange = {props.onChange}
             />
         </div>
     )
@@ -51,10 +54,14 @@ export const Textarea = (props) => {
                 fontSize:"1rem",
             }} 
             placeholder={props.placeholder}
-            id = {props.id}
+            id = {`input-${props.name}`}
+            name = {props.name}
+            value= {props.value}
+            onChange = {props.onChange}
             />
         </div>
     )
 }
+
 
 export default Inputs;
