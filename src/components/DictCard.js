@@ -1,6 +1,8 @@
-import React, { useRef, useEffect } from "react";
-import { db } from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs} from "firebase/firestore";
+import React, { useEffect } from "react";
+import { db } from "../firebase"; 
+import { useSelector, useDispatch  } from "react-redux";
+import { getDict } from "../redux/ListReducer";
 
 const Card = ({dict}) => {
     return(
@@ -16,6 +18,25 @@ const Card = ({dict}) => {
 }
 
 const DictCard = () => {
+    const dictList = useSelector((state) => state.dictList.dicts);
+    const dispatch = useDispatch();
+
+    const getPost = async () => {
+        const query = await getDocs(collection(db, "dict"));
+        // console.log(query)
+        query.forEach(doc => {
+            console.log([doc.id, doc.data()])
+        });
+    }
+
+    useEffect( async () => {
+        const query = await getDocs(collection(db, "dict"));
+        query.forEach(doc => {
+            console.log([doc.id, doc.data()])
+            dispatch(getDict([{id: doc.id, text: doc.data()}]))
+        });
+    },[]);
+
     // useEffect(async() => {
     //     console.log("db",db)
 
@@ -40,28 +61,12 @@ const DictCard = () => {
     //     //삭제
     //     // const docRef = doc(db, "dict", "5NGf55Tfhxf9jCWCC2n6");
     //     // deleteDoc(docRef);
-    // },[])
-    const dicts = [
-        {
-            id:1,
-            word : "안녕안녕",
-            explain : "안녕하세용",
-            example : "예시예시",
-        },
-        {
-            id:2,
-            word : "뿌에엥",
-            explain : "뿌에에에엥",
-            example : "뿌에에에에에에ㅔㅇ",
-        },
-    ]
+    // },[]) 
 
-    const my_wrap = useRef(null);
-    // console.log(my_wrap)
     return(
-        <div className="dict-card" ref={my_wrap}>
-            {dicts.map(dict => (
-                <Card dict = {dict} key = {dict.id}/>
+        <div className="dict-card" >
+            {dictList.map((dict) => (
+                <Card dict = {dict.text} key = {dict.id}/>
             ))}
         </div>
     )
