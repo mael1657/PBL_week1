@@ -21,47 +21,17 @@ const DictCard = () => {
     const dictList = useSelector((state) => state.dictList.dicts);
     const dispatch = useDispatch();
 
-    const getPost = async () => {
-        const query = await getDocs(collection(db, "dict"));
-        // console.log(query)
-        query.forEach(doc => {
-            console.log([doc.id, doc.data()])
-        });
-    }
-
     useEffect( async () => {
+        const arr = []
         const query = await getDocs(collection(db, "dict"));
         query.forEach(doc => {
             console.log([doc.id, doc.data()])
-            dispatch(getDict([{id: doc.id, text: doc.data()}]))
+            // dispatch(getDict([{id: doc.id, text: doc.data()}]))
+            arr.push({id: doc.id, text: doc.data()})
         });
+        dispatch(getDict(arr))
     },[]);
 
-    // useEffect(async() => {
-    //     console.log("db",db)
-
-    //     // 읽기
-    //     const query = await getDocs(collection(db, "dict"));
-    //     console.log("query",query)
-    //     query.forEach((doc) => {
-    //         console.log(doc.id, doc.data());
-    //     });
-
-    //     // 쓰기
-    //     // addDoc(collection(db, "dict"), {
-    //     //     word: "테스트",
-    //     //     explain: "설명",
-    //     //     example: "예시"
-    //     // })
-
-    //     //수정
-    //     // const docRef = doc(db, "dict", "5NGf55Tfhxf9jCWCC2n6");
-    //     // updateDoc(docRef, {word : "수정"});
-
-    //     //삭제
-    //     // const docRef = doc(db, "dict", "5NGf55Tfhxf9jCWCC2n6");
-    //     // deleteDoc(docRef);
-    // },[]) 
 
     return(
         <div className="dict-card" >
