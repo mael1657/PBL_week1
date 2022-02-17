@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// const initialState = [{id:"",text:{word:"",explain:"",example:""}}]
 
 const initState = {
     dicts: [{

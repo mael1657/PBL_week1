@@ -83,7 +83,6 @@ a{
 }
 .write .add-btn{
     width:100%;
-    max-width: 240px;
     padding:20px;
     border:none;
     border-radius: 10px;
@@ -92,8 +91,23 @@ a{
     font-size:1.25rem;
     transition: all .2s ease-in-out;
     cursor: pointer;
+    margin:5px 10px;
 }
 .write .add-btn:hover{
     background-color: teal;
     color:white;
+}
+.write .btn-wrap{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max-width: 500px) {
+    .write .btn-wrap{
+        display: block;
+    }
+    .write .add-btn{
+        margin:5px 0
+    }
 }

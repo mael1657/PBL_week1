@@ -7,7 +7,17 @@ import { collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 const Write = () => {
-    let navigate = useNavigate()
+    let navigate = useNavigate();
+    const getTime = () => {
+        let time = new Date();
+        let year = time.getFullYear();
+        let month = time.getMonth();
+        let date = time.getDate();
+        // console.log(`${year}-${month}-${date}`)
+        let currentDate = `${year}-${month + 1}-${date}`
+        return currentDate
+    }
+    console.log(getTime())
 
     const handleClicked = e => {
         e.preventDefault();
@@ -17,7 +27,8 @@ const Write = () => {
             addDoc(collection(db, "dict"),{
                 word:text.word,
                 explain:text.explain,
-                example:text.example
+                example:text.example,
+                date:getTime()
             })
             const {value, name} = e.target
             setText({
@@ -77,7 +88,12 @@ const Write = () => {
                                 onChange = {onChange}
                             />
                             {console.log(text)}
-                            <button className="add-btn" onClick={handleClicked}>단어 추가하기</button>
+                            <div className="btn-wrap">
+                                <button className="add-btn" onClick={handleClicked}>추가할래요!</button>
+                                <button className="add-btn" onClick={() => {
+                                    navigate("/")
+                                }}>메인으로 갈래요!</button>
+                            </div>
                         </form>
                     </div>
                 </div>

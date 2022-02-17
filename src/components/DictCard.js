@@ -1,4 +1,4 @@
-import { collection, getDocs} from "firebase/firestore";
+import { collection, getDocs, orderBy, query} from "firebase/firestore";
 import React, { useEffect } from "react";
 import { db } from "../firebase"; 
 import { useSelector, useDispatch  } from "react-redux";
@@ -14,8 +14,10 @@ const DictCard = () => {
     useEffect(() => {
         const getPost = async () => {
             const arr = []
-            const query = await getDocs(collection(db, "dict"));
-            query.forEach(doc => {
+            const dictRef = collection(db, "dict");
+            const q = query(dictRef, orderBy("date", "desc"));
+            const dict = await getDocs(q);
+            dict.forEach(doc => {
                 arr.push({id: doc.id, text: doc.data()})
             });
             dispatch(getDict(arr))
