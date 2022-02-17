@@ -8,7 +8,7 @@ const Card = ({dict, id}) => {
         const docRef = doc(db, "dict", `${id}`);
         await deleteDoc(docRef);
     }
-    const removeCheck = async () => {
+    const removeCheck = () => {
         if (window.confirm(`${dict.word}(은)는 당신에 의해 생명이 꺼질 위기에 처했어요. 강행하시겠나요?`)) {
             alert(`${dict.word}(은)는 이 세상에서 지워졌습니다. 아무도 기억하지 못하겠죠...`);
             deletePost();
