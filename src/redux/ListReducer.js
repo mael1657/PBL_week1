@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 
 const initState = {
@@ -7,7 +7,8 @@ const initState = {
         text:{
             word:"",
             explain:"",
-            example:""
+            example:"",
+            date:"",
         }
     },]
 }
@@ -23,8 +24,10 @@ export const ListReducer = createSlice({
             state.dicts = action.payload
         },
         updateDict: (state, action) => {
+            state.dicts = action.payload
         },
         deleteDict:  (state, action) => {
+            state.dicts = action.payload
         },
     },
 });

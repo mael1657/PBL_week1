@@ -9,15 +9,17 @@ import { useNavigate } from "react-router-dom";
 const Write = () => {
     let navigate = useNavigate();
     const getTime = () => {
-        let time = new Date();
-        let year = time.getFullYear();
-        let month = time.getMonth();
-        let date = time.getDate();
-        // console.log(`${year}-${month}-${date}`)
-        let currentDate = `${year}-${month + 1}-${date}`
+        let dateTime = new Date();
+
+        let year = dateTime.getFullYear();
+        let month = dateTime.getMonth();
+        let date = dateTime.getDate();
+        let time = dateTime.getTime();
+
+        let currentDate = `${year}-${month + 1}-${date}:${time}`
         return currentDate
     }
-    console.log(getTime())
+    // console.log(getTime())
 
     const handleClicked = e => {
         e.preventDefault();
@@ -65,36 +67,34 @@ const Write = () => {
                 <div className="write">
                     <h1 className="title">단어 추가하기</h1>
                     <div className="inbox">
-                        <form>
-                            <Text 
-                                title="단어"
-                                placeholder="단어를 입력해주세요."
-                                name = "word"
-                                value = {text.word}
-                                onChange = {onChange}
-                            />
-                            <Textarea 
-                                title="설명"
-                                placeholder="설명을 입력해주세요."
-                                name = "explain"
-                                value = {text.explain}
-                                onChange = {onChange}
-                            />
-                            <Textarea 
-                                title="예시"
-                                placeholder="예시를 입력해주세요."
-                                name = "example"
-                                value = {text.example}
-                                onChange = {onChange}
-                            />
-                            {console.log(text)}
-                            <div className="btn-wrap">
-                                <button className="add-btn" onClick={handleClicked}>추가할래요!</button>
-                                <button className="add-btn" onClick={() => {
-                                    navigate("/")
-                                }}>메인으로 갈래요!</button>
-                            </div>
-                        </form>
+                        <Text 
+                            title="단어"
+                            placeholder="단어를 입력해주세요."
+                            name = "word"
+                            value = {text.word}
+                            onChange = {onChange}
+                        />
+                        <Textarea 
+                            title="설명"
+                            placeholder="설명을 입력해주세요."
+                            name = "explain"
+                            value = {text.explain}
+                            onChange = {onChange}
+                        />
+                        <Textarea 
+                            title="예시"
+                            placeholder="예시를 입력해주세요."
+                            name = "example"
+                            value = {text.example}
+                            onChange = {onChange}
+                        />
+                        {/* {console.log(text)} */}
+                        <div className="btn-wrap">
+                            <button className="add-btn" onClick={handleClicked}>추가할래요!</button>
+                            <button className="add-btn" onClick={() => {
+                                navigate(-1)
+                            }}>메인으로 갈래요!</button>
+                        </div>
                     </div>
                 </div>
             </div>

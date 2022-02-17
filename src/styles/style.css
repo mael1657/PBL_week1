@@ -25,6 +25,7 @@ a{
     color:teal
 }
 .dict-list .inbox{
+    position:relative;
     background-color: #f4f4f4;
     border-radius: 10px;
     padding: 1em;
@@ -47,6 +48,34 @@ a{
 }
 .dict-card{
     margin-bottom:100px
+}
+
+.dict-card .del-btn{
+    position:absolute;
+    top:1em;right:1em;
+    border:none;
+    background-color: #f4f4f4;
+    font-size:1.25rem;
+    cursor: pointer;
+    color:#222;
+    transition: all .2s ease-in-out;
+}
+
+.dict-card .del-btn::after{
+    content: "";
+    display: block;
+    position:absolute;
+    top:11px;left:-5px;
+    width:0;
+    height:2px;
+    background-color: teal;
+    transition: all .2s ease-in-out;
+}
+.dict-card .del-btn:hover{
+    color:teal;
+}
+.dict-card .del-btn:hover::after{
+    width:120%;
 }
 
 .wrt-btn{

@@ -21,7 +21,7 @@ const DictCard = () => {
                 arr.push({id: doc.id, text: doc.data()})
             });
             dispatch(getDict(arr))
-            console.log(arr)
+            // console.log(arr)
         };
         getPost();
     },[dispatch])
@@ -30,7 +30,7 @@ const DictCard = () => {
     return(
         <div className="dict-card" >
             {dictList.map((dict) => (
-                <Card dict = {dict.text} key = {dict.id}/>
+                <Card dict = {dict.text} key = {dict.id} id = {dict.id}/>
             ))}
         </div>
     )
